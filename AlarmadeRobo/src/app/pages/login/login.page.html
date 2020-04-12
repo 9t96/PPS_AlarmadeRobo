@@ -1,0 +1,39 @@
+<ion-content >
+  <ion-text color="primary" >
+    <h2 class="title">Bienvenidos</h2>
+  </ion-text>
+  <form [formGroup]="loginForm">
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="text" formControlName="email" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Contaseña</ion-label>
+      <ion-input type="password" required formControlName="password"></ion-input>
+    </ion-item>
+
+
+  </form>
+  <ion-row>
+    <ion-col>
+      <ion-button (click)="Login()" type="submit" color="primary" expand="block"  [disabled]="!loginForm.valid">Ingresar</ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-button (click)="testUser(1)" color="success" expand="block">
+        Test User 1 
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-button (click)="testUser(2)" color="warning" expand="block">
+        Test User 2
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+
