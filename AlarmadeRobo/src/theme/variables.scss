@@ -230,3 +230,41 @@
     --color: white;
   }
 }
+
+
+@font-face{
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/Ubuntu-Regular.ttf');
+}
+
+@font-face{
+  font-family: 'Ubuntu';
+  font-style: semi-bold;
+  font-weight: 600;
+  src: url('../assets/fonts/Ubuntu-Medium.ttf');
+}
+
+@font-face{
+  font-family: 'Ubuntu';
+  font-style: bold;
+  font-weight: 700;
+  src: url('../assets/fonts/Ubuntu-Bold.ttf');
+}
+
+
+
+$font-family-base: 'Ubuntu', sans-serif;
+body{
+  font-family: 'Ubuntu' !important;
+  font-weight: 400 !important; 
+}
+
+h1,h2, button, p{
+  font-family: 'Ubuntu' !important;
+}
+
+ * {
+  font-family: $font-family-base;
+}
