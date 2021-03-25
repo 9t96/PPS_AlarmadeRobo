@@ -14,7 +14,15 @@
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-button size="large" color="success" (click)="StartWatching()">Activar</ion-button>
+    <ion-button size="large" color="danger" (click)="StopWatching()">Desactivar</ion-button>
+
+    <ion-card *ngIf="showCardData">
+      <ion-card-content>
+        <p>Acelaracion x: {{data.x}}</p>
+        <p>Acelaracion y: {{data.y}}</p>
+        <p>Acelaracion z: {{data.z}}</p>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>
