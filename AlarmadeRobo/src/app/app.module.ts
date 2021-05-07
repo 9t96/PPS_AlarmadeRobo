@@ -14,7 +14,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion/ngx'
 import { Vibration } from '@ionic-native/vibration/ngx';
 import { Flashlight } from '@ionic-native/flashlight/ngx';
@@ -28,7 +28,8 @@ import { NativeAudio } from '@ionic-native/native-audio/ngx';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    FormsModule
     ],
   providers: [
     StatusBar,

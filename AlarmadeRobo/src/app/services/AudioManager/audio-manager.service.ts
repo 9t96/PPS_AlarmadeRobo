@@ -19,14 +19,14 @@ export class AudioManagerService {
   }
 
   private play(key: string) {
-    this._nativeAudio.play(key).then((res) => {
+    this._nativeAudio.loop(key).then((res) => {
       console.log('Reproduzco', key, res);
     }).catch(err => {
       console.log('Error al reproducir', err, 'en', key);
     });
   }
 
-  private stop(key: string) {
+  public stop(key: string) {
     this._nativeAudio.stop(key).then((res) => {
       console.log('Detengo', key, res);
     }).catch(err => {
@@ -35,14 +35,13 @@ export class AudioManagerService {
   }
 
   public cargarAudios() {
-    this.preload('izquierda', 'assets/sonidos/epaa.mp3');
-    this.preload('derecha', '/assets/sonidos/estan-hurtando.mp3');
-    this.preload('vertical', '/assets/sonidos/que-haces.mp3');
-    this.preload('horizontal', '/assets/sonidos/saque-la-mano.mp3');
+    this.preload('izquierda', 'assets/sonidos/epaaa.mp3');
+    this.preload('derecha', 'assets/sonidos/estan-hurtando.mp3');
+    this.preload('vertical', 'assets/sonidos/que-haces.mp3');
+    this.preload('horizontal', 'assets/sonidos/saque-la-mano.mp3');
   }
 
-  public reproducirAudio(key: string, delay: number) {
+  public reproducirAudio(key: string) {
     this.play(key);
-    setTimeout(() => { this.stop(key); }, delay * 1000);
   }
 }

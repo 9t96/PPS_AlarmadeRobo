@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 
 class User{
@@ -14,18 +14,24 @@ class User{
 })
 export class LoginPage implements OnInit {
 
-  
+  showErrors: boolean = false;
+  message:string;
   user: User;
-  loginForm = this.fromBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
-  })
+  public loginForm: FormGroup;
+
+  get name() { return this.loginForm.get('email'); }
+
+  get password() { return this.loginForm.get('password'); }
+
   constructor(private authService: AuthService, private router: Router, private fromBuilder: FormBuilder) { 
     this.user = new User();
   }
 
   ngOnInit() {
-    
+    this.loginForm = this.fromBuilder.group({
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      password: ['', Validators.compose([Validators.required])]
+    })
   }
 
 
@@ -37,7 +43,7 @@ export class LoginPage implements OnInit {
       this.router.navigate(['home']);
     })
     .catch( err =>{ 
-      console.log(err);
+      err.code == "auth/wrong-password" ? this.presentErrors("Uno o mas campos son invalidos...") : this.presentErrors("Ha ocurrido un error vuelva a intentar.")
     })
   }
 
@@ -51,8 +57,27 @@ export class LoginPage implements OnInit {
         this.loginForm.controls['email'].setValue('invitado@invitado.com') 
         this.loginForm.controls['password'].setValue('222222')
         break;
+      case 3:
+        this.loginForm.controls['email'].setValue('usuerio@usuario.com') 
+        this.loginForm.controls['password'].setValue('333333')
+        break;
+      case 4:
+        this.loginForm.controls['email'].setValue('anonimo@anonimo.com') 
+        this.loginForm.controls['password'].setValue('444444')
+        break;
+      case 5:
+        this.loginForm.controls['email'].setValue('tester@tester.com') 
+        this.loginForm.controls['password'].setValue('555555')
     }
     
+  }
+
+  presentErrors(message: string){
+    this.message = message;
+    this.showErrors = true;
+    setTimeout(() => {
+      this.showErrors = false;
+    }, 3500);
   }
 
 }

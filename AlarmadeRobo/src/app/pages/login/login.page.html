@@ -1,39 +1,91 @@
-<ion-content >
-  <ion-text color="primary" >
-    <h2 class="title">Bienvenidos</h2>
-  </ion-text>
-  <form [formGroup]="loginForm">
-    <ion-item lines="full">
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="text" formControlName="email" required></ion-input>
-    </ion-item>
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h1>Inicar sesion</h1>
+      <img src="../../../assets/svg-alarmarobo.png" alt="" />
+    </div>
+    <form [formGroup]="loginForm">
+      <ion-item lines="full" class="input-wrapper">
+        <ion-label>Email</ion-label>
+        <ion-input type="email" formControlName="email" required></ion-input>
+      </ion-item>
+      <ion-row class="hiddenItems">
+        <small
+          *ngIf="loginForm.get('email').hasError('required') && (loginForm.get('email').dirty || loginForm.get('email').touched)"
+          style="color: var(--ion-color-danger)"
+          >Por favor, ingrese su email.</small
+        >
+        <small
+          *ngIf="loginForm.get('email').hasError('email')"
+          style="color: var(--ion-color-danger)"
+          >Ingrese un correo valido.</small
+        >
+      </ion-row>
 
-    <ion-item lines="full">
-      <ion-label position="floating">Contaseña</ion-label>
-      <ion-input type="password" required formControlName="password"></ion-input>
-    </ion-item>
+      <ion-item lines="full" class="input-wrapper">
+        <ion-label>Contaseña</ion-label>
+        <ion-input
+          type="password"
+          required
+          formControlName="password"
+        ></ion-input>
+      </ion-item>
+      <ion-row class="hiddenItems">
+        <small
+          *ngIf="loginForm.get('password').hasError('required') && (loginForm.get('password').dirty || loginForm.get('password').touched)"
+          style="color: var(--ion-color-danger)"
+          [ngClass]="loginForm.get('password').hasError('required') && loginForm.get('password').touched ? 'visible' : 'hidden'"
+          >Por favor, ingrese una constraseña.</small
+        >
+        <small
+          *ngIf="loginForm.get('password').hasError('maxlength') && (loginForm.get('password').dirty || loginForm.get('password').touched)"
+          [ngClass]="loginForm.get('password').hasError('maxlength') && loginForm.get('password').touched ? 'visible' : 'hidden'"
+          style="color: var(--ion-color-danger)"
+          >La contraseña no debe contener mas de 6 caracteres.</small
+        >
+      </ion-row>
 
+      <ion-row class="ctas">
 
-  </form>
-  <ion-row>
-    <ion-col>
-      <ion-button (click)="Login()" type="submit" color="primary" expand="block"  [disabled]="!loginForm.valid">Ingresar</ion-button>
-    </ion-col>
+        <ion-button
+          (click)="Login()"
+          type="submit"
+          size="medium"
+          color="primary"
+          [disabled]="!loginForm.valid"
+          >Ingresar</ion-button
+        >   
+          <ion-icon *ngIf="showErrors" name="alert-circle-outline"></ion-icon>
+          <small *ngIf="showErrors">{{message}}</small>
+      </ion-row>
+    </form>
+  </div>
+
+  <ion-row style="justify-content: space-around; margin-bottom: 1em;">
+    <ion-button (click)="testUser(1)" color="secondary" expand="block">
+      Test User 1
+    </ion-button>
+
+    <ion-button (click)="testUser(2)" color="warning" expand="block">
+      Test User 2
+    </ion-button>
   </ion-row>
-  <ion-row>
-    <ion-col>
-      <ion-button (click)="testUser(1)" color="success" expand="block">
-        Test User 1 
-      </ion-button>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col>
-      <ion-button (click)="testUser(2)" color="warning" expand="block">
-        Test User 2
-      </ion-button>
-    </ion-col>
-  </ion-row>
-</ion-content>
+  
 
+  <ion-row style="justify-content: center;margin-bottom: 1em;">
+    <ion-button (click)="testUser(5)" color="light" expand="block">
+      Test User 5
+    </ion-button>
+  </ion-row>
 
+  <ion-row style="justify-content: space-around;margin-bottom: 1em;">
+    <ion-button (click)="testUser(3)" color="tertiary" expand="block">
+      Test User 3
+    </ion-button>
+
+    <ion-button (click)="testUser(2)" color="dark" expand="block">
+      Test User 4
+    </ion-button>
+  </ion-row>
+
+</div>

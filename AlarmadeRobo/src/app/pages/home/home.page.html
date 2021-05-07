@@ -1,28 +1,45 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <ion-button size="large" color="success" (click)="StartWatching()">Activar</ion-button>
-    <ion-button size="large" color="danger" (click)="StopWatching()">Desactivar</ion-button>
-
-    <ion-card *ngIf="showCardData">
-      <ion-card-content>
-        <p>Acelaracion x: {{data.x}}</p>
-        <p>Acelaracion y: {{data.y}}</p>
-        <p>Acelaracion z: {{data.z}}</p>
-      </ion-card-content>
-    </ion-card>
+<div class="background">
+  <ion-fab horizontal="start" vertical="end" style="margin-top:10px">
+    <ion-fab-button color="warning" (click)="CerrarSesion()">Salir</ion-fab-button>
+  </ion-fab>
+  <h1>Presione para</h1>
+  <h1>activar la alarma</h1>
+  <div id="activate-button" [ngClass]="{pulse: isActive}" (click)="!isActive ? StartWatching() : false">
+    <div *ngIf="!isActive">
+      <ion-icon name="power-outline"></ion-icon>
+    </div>
+    <img *ngIf="isActive" src="../../../assets/svg-alarmarobo.png" alt="" />
+    <div class="doted-elipsis" *ngIf="isActive">
+      <p >Observando</p>
+      <p class="loading"></p>
+    </div>
   </div>
-</ion-content>
+
+  <div class="disable-zone" *ngIf="isActive">
+    <ion-button type="submit" size="large" color="danger" (click)="presentAlertConfirm()"
+      >Desactivar</ion-button
+    >
+  </div>
+</div>
+
+<div id="openModal" class="modalDialog" *ngIf="showModal" style="display: flex;
+justify-content: center;
+z-index: 1;
+background: var(--ion-color-tertiary);
+position: absolute;
+margin: 10px;
+top: 25%;">
+  <div style="padding: 10px">	<a (click)="hideModal()" title="Close" class="close">X</a>
+    <p>Ingrese su contraseña</p>
+    <form [formGroup]='turnOffForm' style="margin-top:2em">
+      <ion-item lines='full' class='input-wrapper'>
+      <ion-label>Contraseña</ion-label>
+      <ion-input type='password' formControlName='password' required></ion-input>
+      </ion-item>
+      <small *ngIf="showErrors">{{message}}</small>
+      <ion-button type="submit" style="margin-top: 1em" size="large" color="danger" (click)="StopWatching()"
+      >Desactivar</ion-button
+    >
+    </form>
+  </div>
+</div>

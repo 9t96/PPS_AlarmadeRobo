@@ -1,3 +1,19 @@
+.background {
+  display: flex;
+  flex-direction: column;
+  background: #333333;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%23ff0000'%3E%3Ccircle cx='769' cy='229' r='7'/%3E%3Ccircle cx='539' cy='269' r='7'/%3E%3Ccircle cx='603' cy='493' r='7'/%3E%3Ccircle cx='731' cy='737' r='7'/%3E%3Ccircle cx='520' cy='660' r='7'/%3E%3Ccircle cx='309' cy='538' r='7'/%3E%3Ccircle cx='295' cy='764' r='7'/%3E%3Ccircle cx='40' cy='599' r='7'/%3E%3Ccircle cx='102' cy='382' r='7'/%3E%3Ccircle cx='127' cy='80' r='7'/%3E%3Ccircle cx='370' cy='105' r='7'/%3E%3Ccircle cx='578' cy='42' r='7'/%3E%3Ccircle cx='237' cy='261' r='7'/%3E%3Ccircle cx='390' cy='382' r='7'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100%;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  h1{
+    color: var(--ion-color-light);
+  }
+}
+
 #container {
   text-align: center;
 
@@ -28,4 +44,141 @@
 
 ion-content ion-toolbar {
   --background: translucent;
+}
+
+ion-item {
+  margin-bottom: 10px;
+  ion-label {
+    font-family: "Ubuntu";
+    color: light;
+  }
+  ion-input {
+    font-family: "Ubuntu";
+    color: light;
+  }
+}
+
+ion-button {
+  --border-radius: 0px;
+  width: 100%;
+  background: #fdf0d5;
+}
+#activate-button {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background: var(--ion-color-dark);
+  border-radius: 50%;
+  margin-top: 2em;
+  width: 100%;
+  height: 50%;
+
+  ion-icon{
+    color: var(--ion-color-light);
+    font-size: 5em;
+  }
+}
+.pulse {
+  box-shadow: 0 0 0 0 rgb(255, 229, 177);
+  transform: scale(1);
+  -webkit-animation: pulse 2s infinite;
+  animation: pulse 1500ms infinite;
+  background: transparent;
+  border-radius: 50%;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgb(255, 229, 177);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgb(248, 232, 198);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgb(253, 240, 213);
+  }
+}
+
+.loading:after {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  -webkit-animation: ellipsis steps(4,end) 900ms infinite;      
+  animation: ellipsis steps(4,end) 1500ms infinite;
+  content: "\2026"; /* ascii code for the ellipsis character */
+  width: 0px;
+}
+
+@keyframes ellipsis {
+  to {
+    width: 1.25em;    
+  }
+}
+
+@-webkit-keyframes ellipsis {
+  to {
+    width: 1.25em;    
+  }
+}
+
+.doted-elipsis{
+  display: flex;
+  flex-direction: row;
+  p{
+    font-size: 1.5em;
+    color: var(--ion-color-light);
+  }
+}
+
+.disable-zone{
+  margin-top: 1.5em;
+}
+
+.input-wrapper{
+  --background: #fdf0d5;
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
