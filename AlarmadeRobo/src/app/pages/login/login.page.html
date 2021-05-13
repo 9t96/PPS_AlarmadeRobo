@@ -1,19 +1,19 @@
 <div class="container">
   <div class="card">
     <div class="card-header">
-      <h1>Inicar sesion</h1>
+      <h1>Inicar sesión</h1>
       <img src="../../../assets/svg-alarmarobo.png" alt="" />
     </div>
     <form [formGroup]="loginForm">
       <ion-item lines="full" class="input-wrapper">
-        <ion-label>Email</ion-label>
+        <ion-label>Correo electrónico</ion-label>
         <ion-input type="email" formControlName="email" required></ion-input>
       </ion-item>
       <ion-row class="hiddenItems">
         <small
           *ngIf="loginForm.get('email').hasError('required') && (loginForm.get('email').dirty || loginForm.get('email').touched)"
           style="color: var(--ion-color-danger)"
-          >Por favor, ingrese su email.</small
+          >Por favor, ingrese su correo.</small
         >
         <small
           *ngIf="loginForm.get('email').hasError('email')"
